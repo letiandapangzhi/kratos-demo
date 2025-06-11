@@ -11,18 +11,29 @@ init:
 .PHONY: config
 # 生成config的pb文件
 config:
-	find app -type d -depth 1 -print | xargs -L 1 bash -c 'cd "$$0" && pwd && $(MAKE) config'
+	find app -type d -depth 1 -not -name "layout" -print | xargs -L 1 bash -c 'cd "$$0" && pwd && $(MAKE) config'
 
 .PHONY: api
 # 生成api的pb文件
 api:
-	find app -type d -depth 1 -print | xargs -L 1 bash -c 'cd "$$0" && pwd && $(MAKE) api'
+	find app -type d -depth 1 -not -name "layout" -print | xargs -L 1 bash -c 'cd "$$0" && pwd && $(MAKE) api'
 
 .PHONY: wire
 # wire依赖注入生成
 wire:
-	find app -type d -depth 1 -print | xargs -L 1 bash -c 'cd "$$0" && pwd && $(MAKE) wire'
+	find app -type d -depth 1 -not -name "layout" -print | xargs -L 1 bash -c 'cd "$$0" && pwd && $(MAKE) wire'
 
 .PHONY: all
 # 执行所有操作
 all: config api wire
+
+.PHONY: exec_new_mono_sh
+# 执行shell脚本
+SERVICE_NAME ?= demo
+exec_new_mono_sh:
+	@export FROM_MAKEFILE=1; \
+	sh ./.template/new_mono_repo.sh $(SERVICE_NAME)
+
+.PHONY: new_mono
+# 创建新的服务
+new_mono: exec_new_mono_sh all

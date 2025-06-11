@@ -22,96 +22,6 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// The request message containing the user's name.
-type HelloRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *HelloRequest) Reset() {
-	*x = HelloRequest{}
-	mi := &file_v1_user_proto_msgTypes[0]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *HelloRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*HelloRequest) ProtoMessage() {}
-
-func (x *HelloRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_v1_user_proto_msgTypes[0]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use HelloRequest.ProtoReflect.Descriptor instead.
-func (*HelloRequest) Descriptor() ([]byte, []int) {
-	return file_v1_user_proto_rawDescGZIP(), []int{0}
-}
-
-func (x *HelloRequest) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-// The response message containing the greetings
-type HelloReply struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Message       string                 `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *HelloReply) Reset() {
-	*x = HelloReply{}
-	mi := &file_v1_user_proto_msgTypes[1]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *HelloReply) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*HelloReply) ProtoMessage() {}
-
-func (x *HelloReply) ProtoReflect() protoreflect.Message {
-	mi := &file_v1_user_proto_msgTypes[1]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use HelloReply.ProtoReflect.Descriptor instead.
-func (*HelloReply) Descriptor() ([]byte, []int) {
-	return file_v1_user_proto_rawDescGZIP(), []int{1}
-}
-
-func (x *HelloReply) GetMessage() string {
-	if x != nil {
-		return x.Message
-	}
-	return ""
-}
-
 type RegisterRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Username      string                 `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
@@ -122,7 +32,7 @@ type RegisterRequest struct {
 
 func (x *RegisterRequest) Reset() {
 	*x = RegisterRequest{}
-	mi := &file_v1_user_proto_msgTypes[2]
+	mi := &file_v1_user_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -134,7 +44,7 @@ func (x *RegisterRequest) String() string {
 func (*RegisterRequest) ProtoMessage() {}
 
 func (x *RegisterRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_v1_user_proto_msgTypes[2]
+	mi := &file_v1_user_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -147,7 +57,7 @@ func (x *RegisterRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RegisterRequest.ProtoReflect.Descriptor instead.
 func (*RegisterRequest) Descriptor() ([]byte, []int) {
-	return file_v1_user_proto_rawDescGZIP(), []int{2}
+	return file_v1_user_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *RegisterRequest) GetUsername() string {
@@ -173,7 +83,7 @@ type RegisterReply struct {
 
 func (x *RegisterReply) Reset() {
 	*x = RegisterReply{}
-	mi := &file_v1_user_proto_msgTypes[3]
+	mi := &file_v1_user_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -185,7 +95,7 @@ func (x *RegisterReply) String() string {
 func (*RegisterReply) ProtoMessage() {}
 
 func (x *RegisterReply) ProtoReflect() protoreflect.Message {
-	mi := &file_v1_user_proto_msgTypes[3]
+	mi := &file_v1_user_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -198,7 +108,7 @@ func (x *RegisterReply) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RegisterReply.ProtoReflect.Descriptor instead.
 func (*RegisterReply) Descriptor() ([]byte, []int) {
-	return file_v1_user_proto_rawDescGZIP(), []int{3}
+	return file_v1_user_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *RegisterReply) GetMessage() string {
@@ -212,21 +122,14 @@ var File_v1_user_proto protoreflect.FileDescriptor
 
 const file_v1_user_proto_rawDesc = "" +
 	"\n" +
-	"\rv1/user.proto\x12\auser.v1\x1a\x1cgoogle/api/annotations.proto\"\"\n" +
-	"\fHelloRequest\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name\"&\n" +
-	"\n" +
-	"HelloReply\x12\x18\n" +
-	"\amessage\x18\x01 \x01(\tR\amessage\"I\n" +
+	"\rv1/user.proto\x12\auser.v1\x1a\x1cgoogle/api/annotations.proto\"I\n" +
 	"\x0fRegisterRequest\x12\x1a\n" +
 	"\busername\x18\x01 \x01(\tR\busername\x12\x1a\n" +
 	"\bpassword\x18\x02 \x01(\tR\bpassword\")\n" +
 	"\rRegisterReply\x12\x18\n" +
-	"\amessage\x18\x01 \x01(\tR\amessage2]\n" +
-	"\aGreeter\x12R\n" +
-	"\bSayHello\x12\x15.user.v1.HelloRequest\x1a\x13.user.v1.HelloReply\"\x1a\x82\xd3\xe4\x93\x02\x14\x12\x12/helloworld/{name}2b\n" +
+	"\amessage\x18\x01 \x01(\tR\amessage2b\n" +
 	"\x04User\x12Z\n" +
-	"\bRegister\x12\x18.user.v1.RegisterRequest\x1a\x16.user.v1.RegisterReply\"\x1c\x82\xd3\xe4\x93\x02\x16:\x01*\"\x11/user/v1/registerB\x10Z\x0eapi/user/v1;v1b\x06proto3"
+	"\bRegister\x12\x18.user.v1.RegisterRequest\x1a\x16.user.v1.RegisterReply\"\x1c\x82\xd3\xe4\x93\x02\x16:\x01*\"\x11/user/v1/registerB\x1cZ\x1akratos-demo/api/user/v1;v1b\x06proto3"
 
 var (
 	file_v1_user_proto_rawDescOnce sync.Once
@@ -240,20 +143,16 @@ func file_v1_user_proto_rawDescGZIP() []byte {
 	return file_v1_user_proto_rawDescData
 }
 
-var file_v1_user_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_v1_user_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_v1_user_proto_goTypes = []any{
-	(*HelloRequest)(nil),    // 0: user.v1.HelloRequest
-	(*HelloReply)(nil),      // 1: user.v1.HelloReply
-	(*RegisterRequest)(nil), // 2: user.v1.RegisterRequest
-	(*RegisterReply)(nil),   // 3: user.v1.RegisterReply
+	(*RegisterRequest)(nil), // 0: user.v1.RegisterRequest
+	(*RegisterReply)(nil),   // 1: user.v1.RegisterReply
 }
 var file_v1_user_proto_depIdxs = []int32{
-	0, // 0: user.v1.Greeter.SayHello:input_type -> user.v1.HelloRequest
-	2, // 1: user.v1.User.Register:input_type -> user.v1.RegisterRequest
-	1, // 2: user.v1.Greeter.SayHello:output_type -> user.v1.HelloReply
-	3, // 3: user.v1.User.Register:output_type -> user.v1.RegisterReply
-	2, // [2:4] is the sub-list for method output_type
-	0, // [0:2] is the sub-list for method input_type
+	0, // 0: user.v1.User.Register:input_type -> user.v1.RegisterRequest
+	1, // 1: user.v1.User.Register:output_type -> user.v1.RegisterReply
+	1, // [1:2] is the sub-list for method output_type
+	0, // [0:1] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -270,9 +169,9 @@ func file_v1_user_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_v1_user_proto_rawDesc), len(file_v1_user_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   2,
 			NumExtensions: 0,
-			NumServices:   2,
+			NumServices:   1,
 		},
 		GoTypes:           file_v1_user_proto_goTypes,
 		DependencyIndexes: file_v1_user_proto_depIdxs,

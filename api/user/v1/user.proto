@@ -6,28 +6,8 @@ import "google/api/annotations.proto";
 
 option go_package = "kratos-demo/api/user/v1;v1";
 
-// The greeting service definition.
-service Greeter {
-  // Sends a greeting
-  rpc SayHello (HelloRequest) returns (HelloReply) {
-    option (google.api.http) = {
-      get: "/helloworld/{name}"
-    };
-  }
-}
-
-// The request message containing the user's name.
-message HelloRequest {
-  string name = 1;
-}
-
-// The response message containing the greetings
-message HelloReply {
-  string message = 1;
-}
-
-service User{
-  rpc Register(RegisterRequest) returns (RegisterReply){
+service User {
+  rpc Register(RegisterRequest) returns (RegisterReply) {
     option (google.api.http) = {
       post: "/user/v1/register",
       body: "*"
@@ -35,11 +15,11 @@ service User{
   }
 }
 
-message RegisterRequest{
+message RegisterRequest {
   string username = 1;
   string password = 2;
 }
 
-message RegisterReply{
+message RegisterReply {
   string message = 1;
 }
