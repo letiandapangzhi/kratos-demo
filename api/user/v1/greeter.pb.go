@@ -116,15 +116,14 @@ var File_v1_greeter_proto protoreflect.FileDescriptor
 
 const file_v1_greeter_proto_rawDesc = "" +
 	"\n" +
-	"\x10v1/greeter.proto\x12\tlayout.v1\x1a\x1cgoogle/api/annotations.proto\"\"\n" +
+	"\x10v1/greeter.proto\x12\auser.v1\x1a\x1cgoogle/api/annotations.proto\"\"\n" +
 	"\fHelloRequest\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\"&\n" +
 	"\n" +
 	"HelloReply\x12\x18\n" +
-	"\amessage\x18\x01 \x01(\tR\amessage2a\n" +
-	"\aGreeter\x12V\n" +
-	"\bSayHello\x12\x17.layout.v1.HelloRequest\x1a\x15.layout.v1.HelloReply\"\x1a\x82\xd3\xe4\x93\x02\x14\x12\x12/helloworld/{name}BQ\n" +
-	"\x1cdev.kratos.api.helloworld.v1B\x11HelloworldProtoV1P\x01Z\x1ckratos-demo/api/layout/v1;v1b\x06proto3"
+	"\amessage\x18\x01 \x01(\tR\amessage2]\n" +
+	"\aGreeter\x12R\n" +
+	"\bSayHello\x12\x15.user.v1.HelloRequest\x1a\x13.user.v1.HelloReply\"\x1a\x82\xd3\xe4\x93\x02\x14\x12\x12/helloworld/{name}B\x1cZ\x1akratos-demo/api/user/v1;v1b\x06proto3"
 
 var (
 	file_v1_greeter_proto_rawDescOnce sync.Once
@@ -140,12 +139,12 @@ func file_v1_greeter_proto_rawDescGZIP() []byte {
 
 var file_v1_greeter_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_v1_greeter_proto_goTypes = []any{
-	(*HelloRequest)(nil), // 0: layout.v1.HelloRequest
-	(*HelloReply)(nil),   // 1: layout.v1.HelloReply
+	(*HelloRequest)(nil), // 0: user.v1.HelloRequest
+	(*HelloReply)(nil),   // 1: user.v1.HelloReply
 }
 var file_v1_greeter_proto_depIdxs = []int32{
-	0, // 0: layout.v1.Greeter.SayHello:input_type -> layout.v1.HelloRequest
-	1, // 1: layout.v1.Greeter.SayHello:output_type -> layout.v1.HelloReply
+	0, // 0: user.v1.Greeter.SayHello:input_type -> user.v1.HelloRequest
+	1, // 1: user.v1.Greeter.SayHello:output_type -> user.v1.HelloReply
 	1, // [1:2] is the sub-list for method output_type
 	0, // [0:1] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
