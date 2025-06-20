@@ -39,7 +39,7 @@ wire:
 print:
 	@echo "$(API_PROTO_FILES)"
 
-.PHONY: gorm-gen
+.PHONY: gorm_gen
 # 生成gorm的gen
-gorm-gen:
+gorm_gen:
 	cd internal/data/gen && go run generate.go -f ../../../configs/config.yaml

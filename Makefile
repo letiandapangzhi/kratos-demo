@@ -38,6 +38,6 @@ exec_new_mono_sh:
 # 创建新的服务 make new_mono SERVICE_NAME=demo
 new_mono: exec_new_mono_sh all
 
-.PHONY: gorm-gen
-gorm-gen:
+.PHONY: gorm_gen
+gorm_gen-gen:
 	find app -type d -depth 1 -print | xargs -L 1 bash -c 'cd "$$0" && pwd && $(MAKE) gorm-gen'
