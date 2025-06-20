@@ -17,7 +17,7 @@ import (
 
 	"gorm.io/plugin/dbresolver"
 
-	"kratos-demo/app/user/internal/data/dal/model"
+	"kratos-demo/app/user/internal/data/gen/model"
 )
 
 func newTestCompany(db *gorm.DB, opts ...gen.DOOption) testCompany {

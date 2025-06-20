@@ -1,9 +1,9 @@
 package data
 
 import (
-	"context"
-
 	"kratos-demo/app/user/internal/biz"
+
+	"context"
 
 	"github.com/go-kratos/kratos/v2/log"
 )
@@ -22,7 +22,7 @@ func NewGreeterRepo(data *Data, logger log.Logger) biz.GreeterRepo {
 }
 
 func (r *greeterRepo) Save(ctx context.Context, g *biz.Greeter) (*biz.Greeter, error) {
-	companyInfo, err := r.data.client.TestCompany.First()
+	companyInfo, err := r.data.model.TestCompany.First()
 	if err != nil {
 		return nil, err
 	}

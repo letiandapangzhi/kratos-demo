@@ -25,7 +25,8 @@ const (
 type CompanyRegisterRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Phone         string                 `protobuf:"bytes,1,opt,name=phone,proto3" json:"phone,omitempty"`
-	Password      string                 `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Password      string                 `protobuf:"bytes,3,opt,name=password,proto3" json:"password,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -63,6 +64,13 @@ func (*CompanyRegisterRequest) Descriptor() ([]byte, []int) {
 func (x *CompanyRegisterRequest) GetPhone() string {
 	if x != nil {
 		return x.Phone
+	}
+	return ""
+}
+
+func (x *CompanyRegisterRequest) GetName() string {
+	if x != nil {
+		return x.Name
 	}
 	return ""
 }
@@ -130,10 +138,11 @@ var File_v1_user_proto protoreflect.FileDescriptor
 
 const file_v1_user_proto_rawDesc = "" +
 	"\n" +
-	"\rv1/user.proto\x12\auser.v1\x1a\x1cgoogle/api/annotations.proto\"J\n" +
+	"\rv1/user.proto\x12\auser.v1\x1a\x1cgoogle/api/annotations.proto\"^\n" +
 	"\x16CompanyRegisterRequest\x12\x14\n" +
-	"\x05phone\x18\x01 \x01(\tR\x05phone\x12\x1a\n" +
-	"\bpassword\x18\x02 \x01(\tR\bpassword\"L\n" +
+	"\x05phone\x18\x01 \x01(\tR\x05phone\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12\x1a\n" +
+	"\bpassword\x18\x03 \x01(\tR\bpassword\"L\n" +
 	"\x14CompanyRegisterReply\x12\x15\n" +
 	"\x06app_id\x18\x01 \x01(\tR\x05appId\x12\x1d\n" +
 	"\n" +

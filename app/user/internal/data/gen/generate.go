@@ -13,7 +13,7 @@ import (
 var flagConf string
 
 func init() {
-	flag.StringVar(&flagConf, "conf", "../../configs", "config path, eg: -conf config.yaml")
+	flag.StringVar(&flagConf, "conf", "../../../configs", "config path, eg: -conf config.yaml")
 }
 func main() {
 	c := config.New(
@@ -33,7 +33,7 @@ func main() {
 	}
 
 	g := gen.NewGenerator(gen.Config{
-		OutPath: "../../internal/data/dal/query",
+		OutPath: "./query",
 		Mode:    gen.WithoutContext | gen.WithDefaultQuery | gen.WithQueryInterface, // generate mode
 	})
 

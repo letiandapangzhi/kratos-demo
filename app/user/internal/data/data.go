@@ -2,7 +2,7 @@ package data
 
 import (
 	"kratos-demo/app/user/internal/conf"
-	"kratos-demo/app/user/internal/data/dal/query"
+	"kratos-demo/app/user/internal/data/gen/query"
 
 	"fmt"
 	"time"
@@ -14,11 +14,12 @@ import (
 )
 
 // ProviderSet is data providers.
-var ProviderSet = wire.NewSet(NewData, NewGreeterRepo)
+var ProviderSet = wire.NewSet(NewData, NewGreeterRepo, NewCompanyRepo)
 
 // Data .
 type Data struct {
-	client *query.Query
+	model  *query.Query
+	client *gorm.DB
 }
 
 // NewData .
@@ -53,6 +54,7 @@ func NewData(c *conf.Data, logger log.Logger) (*Data, func(), error) {
 		}
 	}
 	return &Data{
-		client: query.Use(db),
+		client: db,
+		model:  query.Use(db),
 	}, cleanup, nil
 }

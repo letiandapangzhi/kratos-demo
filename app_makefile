@@ -39,4 +39,4 @@ print:
 .PHONY: gorm-gen
 # 生成gorm的gen
 gorm-gen:
-	cd cmd/gen && go run generate.go -f ../../configs/config.yaml
+	cd internal/data/gen && go run generate.go -f ../../../configs/config.yaml
