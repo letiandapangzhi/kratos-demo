@@ -3,7 +3,7 @@ package service
 import (
 	"context"
 
-	v1 "kratos-demo/api/layout/v1"
+	v1 "kratos-demo/app/layout/api/v1"
 	"kratos-demo/app/layout/internal/biz"
 )
 
