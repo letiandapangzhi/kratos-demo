@@ -1,7 +1,7 @@
 package biz
 
 import (
-	v1 "kratos-demo/api/user/v1"
+	v1 "kratos-demo/app/user/api/v1"
 
 	"github.com/go-kratos/kratos/v2/log"
 )
@@ -21,7 +21,7 @@ type CompanyUseCase struct {
 	log  *log.Helper
 }
 
-func NewUserUseCase(repo CompanyRepo, logger log.Logger) *CompanyUseCase {
+func NewCompanyUseCase(repo CompanyRepo, logger log.Logger) *CompanyUseCase {
 	return &CompanyUseCase{repo: repo, log: log.NewHelper(logger)}
 }
 

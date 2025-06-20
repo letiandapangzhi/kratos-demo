@@ -3,28 +3,9 @@
 
 openapi: 3.0.3
 info:
-    title: ""
+    title: User API
     version: 0.0.1
 paths:
-    /helloworld/{name}:
-        get:
-            tags:
-                - Greeter
-            description: Sends a greeting
-            operationId: Greeter_SayHello
-            parameters:
-                - name: name
-                  in: path
-                  required: true
-                  schema:
-                    type: string
-            responses:
-                "200":
-                    description: OK
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/user.v1.HelloReply'
     /user/v1/company/register:
         post:
             tags:
@@ -34,7 +15,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/user.v1.CompanyRegisterRequest'
+                            $ref: '#/components/schemas/api.v1.CompanyRegisterRequest'
                 required: true
             responses:
                 "200":
@@ -42,17 +23,17 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/user.v1.CompanyRegisterReply'
+                                $ref: '#/components/schemas/api.v1.CompanyRegisterReply'
 components:
     schemas:
-        user.v1.CompanyRegisterReply:
+        api.v1.CompanyRegisterReply:
             type: object
             properties:
                 appId:
                     type: string
                 appSecret:
                     type: string
-        user.v1.CompanyRegisterRequest:
+        api.v1.CompanyRegisterRequest:
             type: object
             properties:
                 phone:
@@ -61,13 +42,5 @@ components:
                     type: string
                 password:
                     type: string
-        user.v1.HelloReply:
-            type: object
-            properties:
-                message:
-                    type: string
-            description: The response message containing the greetings
 tags:
-    - name: Greeter
-      description: The greeting service definition.
     - name: User

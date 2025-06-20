@@ -19,7 +19,7 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	User_CompanyRegister_FullMethodName = "/user.v1.User/CompanyRegister"
+	User_CompanyRegister_FullMethodName = "/api.v1.User/CompanyRegister"
 )
 
 // UserClient is the client API for User service.
@@ -108,7 +108,7 @@ func _User_CompanyRegister_Handler(srv interface{}, ctx context.Context, dec fun
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var User_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "user.v1.User",
+	ServiceName: "api.v1.User",
 	HandlerType: (*UserServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

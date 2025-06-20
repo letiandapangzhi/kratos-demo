@@ -3,7 +3,7 @@ package service
 import (
 	"kratos-demo/app/user/internal/biz"
 
-	v1 "kratos-demo/api/user/v1"
+	v1 "kratos-demo/app/user/api/v1"
 )
 
 type UserService struct {

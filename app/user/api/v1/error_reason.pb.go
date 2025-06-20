@@ -71,10 +71,10 @@ var File_v1_error_reason_proto protoreflect.FileDescriptor
 
 const file_v1_error_reason_proto_rawDesc = "" +
 	"\n" +
-	"\x15v1/error_reason.proto\x12\auser.v1*:\n" +
+	"\x15v1/error_reason.proto\x12\x06api.v1*:\n" +
 	"\vErrorReason\x12\x17\n" +
 	"\x13GREETER_UNSPECIFIED\x10\x00\x12\x12\n" +
-	"\x0eUSER_NOT_FOUND\x10\x01B\x1cZ\x1akratos-demo/api/user/v1;v1b\x06proto3"
+	"\x0eUSER_NOT_FOUND\x10\x01B Z\x1ekratos-demo/app/user/api/v1;v1b\x06proto3"
 
 var (
 	file_v1_error_reason_proto_rawDescOnce sync.Once
@@ -90,7 +90,7 @@ func file_v1_error_reason_proto_rawDescGZIP() []byte {
 
 var file_v1_error_reason_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_v1_error_reason_proto_goTypes = []any{
-	(ErrorReason)(0), // 0: user.v1.ErrorReason
+	(ErrorReason)(0), // 0: api.v1.ErrorReason
 }
 var file_v1_error_reason_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type
