@@ -1,7 +1,7 @@
 package server
 
 import (
-	v1 "kratos-demo/app/user/api/v1"
+	v1 "kratos-demo/api/user/v1"
 	"kratos-demo/app/user/internal/conf"
 	"kratos-demo/app/user/internal/service"
 

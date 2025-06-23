@@ -15,12 +15,14 @@ echo "创建服务 $service_name ..."
 
 current_dir=$(pwd)
 
-echo "复制模板并修改名称..."
+echo "复制api模板并修改名称..."Add commentMore actions
+cp -r "$current_dir/.template/api/layout" "$current_dir/api/$service_name"
+find "$current_dir/api/$service_name" -name "*.proto" | xargs sed -i '' "s/layout/$service_name/g"
+
+echo "复制app模板并修改名称..."
 cp -r "$current_dir/.template/app/layout" "$current_dir/app/$service_name"
 # 修改文件夹名称 用于wire
 mv "$current_dir/app/$service_name/cmd/layout" "$current_dir/app/$service_name/cmd/$service_name"
-# 替换api的proto路径
-find "$current_dir/app/$service_name/api/v1" -name "*.proto" | xargs sed -i '' "s/layout/$service_name/g"
 # 替换conf的proto路径
 find "$current_dir/app/$service_name/internal/conf" -name "*.proto" | xargs sed -i '' "s/layout/$service_name/g"
 # 遍历所有.go文件（排除wire_gen.go和*pb.go）

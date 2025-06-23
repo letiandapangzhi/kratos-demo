@@ -138,7 +138,7 @@ var File_v1_user_proto protoreflect.FileDescriptor
 
 const file_v1_user_proto_rawDesc = "" +
 	"\n" +
-	"\rv1/user.proto\x12\x06api.v1\x1a\x1cgoogle/api/annotations.proto\"^\n" +
+	"\rv1/user.proto\x12\auser.v1\x1a\x1cgoogle/api/annotations.proto\"^\n" +
 	"\x16CompanyRegisterRequest\x12\x14\n" +
 	"\x05phone\x18\x01 \x01(\tR\x05phone\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x1a\n" +
@@ -146,9 +146,9 @@ const file_v1_user_proto_rawDesc = "" +
 	"\x14CompanyRegisterReply\x12\x15\n" +
 	"\x06app_id\x18\x01 \x01(\tR\x05appId\x12\x1d\n" +
 	"\n" +
-	"app_secret\x18\x02 \x01(\tR\tappSecret2}\n" +
-	"\x04User\x12u\n" +
-	"\x0fCompanyRegister\x12\x1e.api.v1.CompanyRegisterRequest\x1a\x1c.api.v1.CompanyRegisterReply\"$\x82\xd3\xe4\x93\x02\x1e:\x01*\"\x19/user/v1/company/registerB Z\x1ekratos-demo/app/user/api/v1;v1b\x06proto3"
+	"app_secret\x18\x02 \x01(\tR\tappSecret2\x7f\n" +
+	"\x04User\x12w\n" +
+	"\x0fCompanyRegister\x12\x1f.user.v1.CompanyRegisterRequest\x1a\x1d.user.v1.CompanyRegisterReply\"$\x82\xd3\xe4\x93\x02\x1e:\x01*\"\x19/user/v1/company/registerB\x1cZ\x1akratos-demo/api/user/v1;v1b\x06proto3"
 
 var (
 	file_v1_user_proto_rawDescOnce sync.Once
@@ -164,12 +164,12 @@ func file_v1_user_proto_rawDescGZIP() []byte {
 
 var file_v1_user_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_v1_user_proto_goTypes = []any{
-	(*CompanyRegisterRequest)(nil), // 0: api.v1.CompanyRegisterRequest
-	(*CompanyRegisterReply)(nil),   // 1: api.v1.CompanyRegisterReply
+	(*CompanyRegisterRequest)(nil), // 0: user.v1.CompanyRegisterRequest
+	(*CompanyRegisterReply)(nil),   // 1: user.v1.CompanyRegisterReply
 }
 var file_v1_user_proto_depIdxs = []int32{
-	0, // 0: api.v1.User.CompanyRegister:input_type -> api.v1.CompanyRegisterRequest
-	1, // 1: api.v1.User.CompanyRegister:output_type -> api.v1.CompanyRegisterReply
+	0, // 0: user.v1.User.CompanyRegister:input_type -> user.v1.CompanyRegisterRequest
+	1, // 1: user.v1.User.CompanyRegister:output_type -> user.v1.CompanyRegisterReply
 	1, // [1:2] is the sub-list for method output_type
 	0, // [0:1] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name

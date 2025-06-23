@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package api.v1;
+package user.v1;
 
-option go_package = "kratos-demo/app/user/api/v1;v1";
+option go_package = "kratos-demo/api/user/v1;v1";
 
 import "google/api/annotations.proto";
 

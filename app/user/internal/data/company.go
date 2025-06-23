@@ -1,7 +1,7 @@
 package data
 
 import (
-	v1 "kratos-demo/app/user/api/v1"
+	v1 "kratos-demo/api/user/v1"
 	"kratos-demo/app/user/internal/biz"
 	"kratos-demo/app/user/internal/data/gen/model"
 

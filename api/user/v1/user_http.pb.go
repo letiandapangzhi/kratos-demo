@@ -19,7 +19,7 @@ var _ = binding.EncodeURL
 
 const _ = http.SupportPackageIsVersion1
 
-const OperationUserCompanyRegister = "/api.v1.User/CompanyRegister"
+const OperationUserCompanyRegister = "/user.v1.User/CompanyRegister"
 
 type UserHTTPServer interface {
 	CompanyRegister(context.Context, *CompanyRegisterRequest) (*CompanyRegisterReply, error)

@@ -1,6 +1,6 @@
 # Kratos Demo
 
-kratos实践，基于kratos的[beer-show](https://github.com/go-kratos/beer-shop)多微服务项目，调整了目录结构
+kratos实践，基于kratos的[beer-shop](https://github.com/go-kratos/beer-shop)多微服务项目，调整了目录结构
 
 ## make工具
 ```shell

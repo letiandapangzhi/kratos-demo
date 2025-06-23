@@ -15,7 +15,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/api.v1.CompanyRegisterRequest'
+                            $ref: '#/components/schemas/user.v1.CompanyRegisterRequest'
                 required: true
             responses:
                 "200":
@@ -23,17 +23,17 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/api.v1.CompanyRegisterReply'
+                                $ref: '#/components/schemas/user.v1.CompanyRegisterReply'
 components:
     schemas:
-        api.v1.CompanyRegisterReply:
+        user.v1.CompanyRegisterReply:
             type: object
             properties:
                 appId:
                     type: string
                 appSecret:
                     type: string
-        api.v1.CompanyRegisterRequest:
+        user.v1.CompanyRegisterRequest:
             type: object
             properties:
                 phone:

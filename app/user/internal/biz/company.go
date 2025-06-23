@@ -1,7 +1,7 @@
 package biz
 
 import (
-	v1 "kratos-demo/app/user/api/v1"
+	v1 "kratos-demo/api/user/v1"
 
 	"github.com/go-kratos/kratos/v2/log"
 )
