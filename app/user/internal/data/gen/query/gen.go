@@ -16,34 +16,34 @@ import (
 )
 
 var (
-	Q           = new(Query)
-	TestCompany *testCompany
+	Q       = new(Query)
+	Company *company
 )
 
 func SetDefault(db *gorm.DB, opts ...gen.DOOption) {
 	*Q = *Use(db, opts...)
-	TestCompany = &Q.TestCompany
+	Company = &Q.Company
 }
 
 func Use(db *gorm.DB, opts ...gen.DOOption) *Query {
 	return &Query{
-		db:          db,
-		TestCompany: newTestCompany(db, opts...),
+		db:      db,
+		Company: newCompany(db, opts...),
 	}
 }
 
 type Query struct {
 	db *gorm.DB
 
-	TestCompany testCompany
+	Company company
 }
 
 func (q *Query) Available() bool { return q.db != nil }
 
 func (q *Query) clone(db *gorm.DB) *Query {
 	return &Query{
-		db:          db,
-		TestCompany: q.TestCompany.clone(db),
+		db:      db,
+		Company: q.Company.clone(db),
 	}
 }
 
@@ -57,18 +57,18 @@ func (q *Query) WriteDB() *Query {
 
 func (q *Query) ReplaceDB(db *gorm.DB) *Query {
 	return &Query{
-		db:          db,
-		TestCompany: q.TestCompany.replaceDB(db),
+		db:      db,
+		Company: q.Company.replaceDB(db),
 	}
 }
 
 type queryCtx struct {
-	TestCompany ITestCompanyDo
+	Company ICompanyDo
 }
 
 func (q *Query) WithContext(ctx context.Context) *queryCtx {
 	return &queryCtx{
-		TestCompany: q.TestCompany.WithContext(ctx),
+		Company: q.Company.WithContext(ctx),
 	}
 }
 

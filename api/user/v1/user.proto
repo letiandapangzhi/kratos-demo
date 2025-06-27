@@ -18,7 +18,6 @@ service User {
 message CompanyRegisterRequest {
   string phone = 1;
   string name = 2;
-  string password = 3;
 }
 
 message CompanyRegisterReply {

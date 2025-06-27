@@ -25,5 +25,12 @@ make gorm_gen
 # 配置xxx/configs/config.yaml数据库，xxx/internal/data/gen/generate.go确认服务用到的表->make gorm_gen
 make new_mono SERVICE_NAME=xxx
 
-
 ```
+
+## 本地开发
+### dbeaver连接
+驱动设置：
+勾选"Allow Public Key Retrieval"
+
+SSL模式选择"DISABLED"（开发环境）
+

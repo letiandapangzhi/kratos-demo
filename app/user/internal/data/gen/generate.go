@@ -42,7 +42,7 @@ func main() {
 
 	// generate all table from database
 	//g.ApplyBasic(g.GenerateAllTable()...)
-	g.ApplyBasic(g.GenerateModel("test_company"))
+	g.ApplyBasic(g.GenerateModel("company"))
 
 	g.Execute()
 }

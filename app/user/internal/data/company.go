@@ -1,11 +1,14 @@
 package data
 
 import (
+	"encoding/hex"
+	"fmt"
+	"github.com/go-kratos/kratos/v2/log"
 	v1 "kratos-demo/api/user/v1"
 	"kratos-demo/app/user/internal/biz"
 	"kratos-demo/app/user/internal/data/gen/model"
-
-	"github.com/go-kratos/kratos/v2/log"
+	"kratos-demo/pkg/util"
+	"time"
 )
 
 type companyRepo struct {
@@ -21,11 +24,22 @@ func NewCompanyRepo(data *Data, logger log.Logger) biz.CompanyRepo {
 }
 
 func (r *companyRepo) Save(req *v1.CompanyRegisterRequest) (*biz.Company, error) {
-	insertData := &model.TestCompany{
-		Name:  req.Name,
-		Phone: req.Phone,
+	secret, err := util.RandomByte(16)
+	if err != nil {
+		return nil, err
 	}
-	err := r.data.model.TestCompany.Create()
+	password, err := util.BcryptHash(util.SHA3256Hash(req.Phone[5:]))
+	if err != nil {
+		return nil, err
+	}
+	insertData := &model.Company{
+		Name:      req.Name,
+		Phone:     req.Phone,
+		Password:  password,
+		AppID:     fmt.Sprintf("xt%d", time.Now().UnixMilli()),
+		AppSecret: hex.EncodeToString(secret), // 16字节转16进制字符串长度是32
+	}
+	err = r.data.model.Company.Create(insertData)
 	if err != nil {
 		return nil, err
 	}

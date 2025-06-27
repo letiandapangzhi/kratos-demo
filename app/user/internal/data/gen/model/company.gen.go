@@ -8,21 +8,21 @@ import (
 	"time"
 )
 
-const TableNameTestCompany = "test_company"
+const TableNameCompany = "company"
 
-// TestCompany 公司
-type TestCompany struct {
+// Company 公司
+type Company struct {
 	ID         int32     `gorm:"column:id;primaryKey;autoIncrement:true" json:"id"`
 	Name       string    `gorm:"column:name;not null" json:"name"`
 	Phone      string    `gorm:"column:phone;not null" json:"phone"`
 	Password   string    `gorm:"column:password;not null" json:"password"`
 	AppID      string    `gorm:"column:app_id;not null" json:"app_id"`
 	AppSecret  string    `gorm:"column:app_secret;not null" json:"app_secret"`
-	CreateTime time.Time `gorm:"column:create_time;not null;default:current_timestamp();comment:创建时间" json:"create_time"` // 创建时间
-	UpdateTime time.Time `gorm:"column:update_time;not null;default:current_timestamp();comment:更新时间" json:"update_time"` // 更新时间
+	CreateTime time.Time `gorm:"column:create_time;not null;default:CURRENT_TIMESTAMP;comment:创建时间" json:"create_time"` // 创建时间
+	UpdateTime time.Time `gorm:"column:update_time;not null;default:CURRENT_TIMESTAMP;comment:更新时间" json:"update_time"` // 更新时间
 }
 
-// TableName TestCompany's table name
-func (*TestCompany) TableName() string {
-	return TableNameTestCompany
+// TableName Company's table name
+func (*Company) TableName() string {
+	return TableNameCompany
 }
