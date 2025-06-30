@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	"github.com/go-kratos/kratos/v2/config"
 	"github.com/go-kratos/kratos/v2/config/file"
 	"gorm.io/driver/mysql"
@@ -21,7 +22,12 @@ func main() {
 			file.NewSource(flagConf),
 		),
 	)
-	defer c.Close()
+	defer func(c config.Config) {
+		err := c.Close()
+		if err != nil {
+			fmt.Println("配置关闭错误", err)
+		}
+	}(c)
 
 	if err := c.Load(); err != nil {
 		panic(err)

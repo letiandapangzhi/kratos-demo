@@ -54,3 +54,25 @@ func TestSM3Hash(t *testing.T) {
 
 	fmt.Println(SM3Hash(data))
 }
+
+func TestAes256GCM(t *testing.T) {
+	// 生成32字节随机密钥（256位）
+	key, err := RandomByte(32)
+
+	// 待加密明文
+	plaintext := []byte("机密数据123")
+
+	// 加密
+	ciphertext, nonce, err := Aes256GCMEncrypt(key, plaintext)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("加密结果:\nNonce: %x\n密文: %x\n", nonce, ciphertext)
+
+	// 解密
+	decrypted, err := Aes256GCMDecrypt(key, nonce, ciphertext)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("解密结果: %s\n", decrypted)
+}

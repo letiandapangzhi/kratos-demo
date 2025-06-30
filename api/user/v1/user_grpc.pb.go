@@ -20,6 +20,7 @@ const _ = grpc.SupportPackageIsVersion9
 
 const (
 	User_CompanyRegister_FullMethodName = "/user.v1.User/CompanyRegister"
+	User_AccessToken_FullMethodName     = "/user.v1.User/AccessToken"
 )
 
 // UserClient is the client API for User service.
@@ -27,6 +28,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type UserClient interface {
 	CompanyRegister(ctx context.Context, in *CompanyRegisterRequest, opts ...grpc.CallOption) (*CompanyRegisterReply, error)
+	AccessToken(ctx context.Context, in *AccessTokenRequest, opts ...grpc.CallOption) (*AccessTokenReply, error)
 }
 
 type userClient struct {
@@ -47,11 +49,22 @@ func (c *userClient) CompanyRegister(ctx context.Context, in *CompanyRegisterReq
 	return out, nil
 }
 
+func (c *userClient) AccessToken(ctx context.Context, in *AccessTokenRequest, opts ...grpc.CallOption) (*AccessTokenReply, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AccessTokenReply)
+	err := c.cc.Invoke(ctx, User_AccessToken_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // UserServer is the server API for User service.
 // All implementations must embed UnimplementedUserServer
 // for forward compatibility.
 type UserServer interface {
 	CompanyRegister(context.Context, *CompanyRegisterRequest) (*CompanyRegisterReply, error)
+	AccessToken(context.Context, *AccessTokenRequest) (*AccessTokenReply, error)
 	mustEmbedUnimplementedUserServer()
 }
 
@@ -64,6 +77,9 @@ type UnimplementedUserServer struct{}
 
 func (UnimplementedUserServer) CompanyRegister(context.Context, *CompanyRegisterRequest) (*CompanyRegisterReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CompanyRegister not implemented")
+}
+func (UnimplementedUserServer) AccessToken(context.Context, *AccessTokenRequest) (*AccessTokenReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AccessToken not implemented")
 }
 func (UnimplementedUserServer) mustEmbedUnimplementedUserServer() {}
 func (UnimplementedUserServer) testEmbeddedByValue()              {}
@@ -104,6 +120,24 @@ func _User_CompanyRegister_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
+func _User_AccessToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AccessTokenRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).AccessToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_AccessToken_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).AccessToken(ctx, req.(*AccessTokenRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // User_ServiceDesc is the grpc.ServiceDesc for User service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -114,6 +148,10 @@ var User_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CompanyRegister",
 			Handler:    _User_CompanyRegister_Handler,
+		},
+		{
+			MethodName: "AccessToken",
+			Handler:    _User_AccessToken_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

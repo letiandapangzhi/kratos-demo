@@ -13,6 +13,12 @@ service User {
       body: "*"
     };
   }
+  rpc AccessToken (AccessTokenRequest) returns (AccessTokenReply) {
+    option (google.api.http) = {
+      post: "/user/v1/accessToken"
+      body: "*"
+    };
+  }
 }
 
 message CompanyRegisterRequest {
@@ -21,6 +27,16 @@ message CompanyRegisterRequest {
 }
 
 message CompanyRegisterReply {
-  string app_id = 1;
-  string app_secret = 2;
+  string appId = 1;
+  string appSecret = 2;
+}
+
+message AccessTokenRequest {
+  string appId = 1;
+  string sign = 2;
+  string timestamp = 3;
+}
+
+message AccessTokenReply {
+  string accessToken = 1;
 }

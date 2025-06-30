@@ -76,8 +76,8 @@ func (x *CompanyRegisterRequest) GetName() string {
 
 type CompanyRegisterReply struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	AppId         string                 `protobuf:"bytes,1,opt,name=app_id,json=appId,proto3" json:"app_id,omitempty"`
-	AppSecret     string                 `protobuf:"bytes,2,opt,name=app_secret,json=appSecret,proto3" json:"app_secret,omitempty"`
+	AppId         string                 `protobuf:"bytes,1,opt,name=appId,proto3" json:"appId,omitempty"`
+	AppSecret     string                 `protobuf:"bytes,2,opt,name=appSecret,proto3" json:"appSecret,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -126,6 +126,110 @@ func (x *CompanyRegisterReply) GetAppSecret() string {
 	return ""
 }
 
+type AccessTokenRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	AppId         string                 `protobuf:"bytes,1,opt,name=appId,proto3" json:"appId,omitempty"`
+	Sign          string                 `protobuf:"bytes,2,opt,name=sign,proto3" json:"sign,omitempty"`
+	Timestamp     string                 `protobuf:"bytes,3,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AccessTokenRequest) Reset() {
+	*x = AccessTokenRequest{}
+	mi := &file_v1_user_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AccessTokenRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AccessTokenRequest) ProtoMessage() {}
+
+func (x *AccessTokenRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_v1_user_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AccessTokenRequest.ProtoReflect.Descriptor instead.
+func (*AccessTokenRequest) Descriptor() ([]byte, []int) {
+	return file_v1_user_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *AccessTokenRequest) GetAppId() string {
+	if x != nil {
+		return x.AppId
+	}
+	return ""
+}
+
+func (x *AccessTokenRequest) GetSign() string {
+	if x != nil {
+		return x.Sign
+	}
+	return ""
+}
+
+func (x *AccessTokenRequest) GetTimestamp() string {
+	if x != nil {
+		return x.Timestamp
+	}
+	return ""
+}
+
+type AccessTokenReply struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	AccessToken   string                 `protobuf:"bytes,1,opt,name=accessToken,proto3" json:"accessToken,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AccessTokenReply) Reset() {
+	*x = AccessTokenReply{}
+	mi := &file_v1_user_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AccessTokenReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AccessTokenReply) ProtoMessage() {}
+
+func (x *AccessTokenReply) ProtoReflect() protoreflect.Message {
+	mi := &file_v1_user_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AccessTokenReply.ProtoReflect.Descriptor instead.
+func (*AccessTokenReply) Descriptor() ([]byte, []int) {
+	return file_v1_user_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *AccessTokenReply) GetAccessToken() string {
+	if x != nil {
+		return x.AccessToken
+	}
+	return ""
+}
+
 var File_v1_user_proto protoreflect.FileDescriptor
 
 const file_v1_user_proto_rawDesc = "" +
@@ -133,13 +237,19 @@ const file_v1_user_proto_rawDesc = "" +
 	"\rv1/user.proto\x12\auser.v1\x1a\x1cgoogle/api/annotations.proto\"B\n" +
 	"\x16CompanyRegisterRequest\x12\x14\n" +
 	"\x05phone\x18\x01 \x01(\tR\x05phone\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\"L\n" +
-	"\x14CompanyRegisterReply\x12\x15\n" +
-	"\x06app_id\x18\x01 \x01(\tR\x05appId\x12\x1d\n" +
-	"\n" +
-	"app_secret\x18\x02 \x01(\tR\tappSecret2\x7f\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\"J\n" +
+	"\x14CompanyRegisterReply\x12\x14\n" +
+	"\x05appId\x18\x01 \x01(\tR\x05appId\x12\x1c\n" +
+	"\tappSecret\x18\x02 \x01(\tR\tappSecret\"\\\n" +
+	"\x12AccessTokenRequest\x12\x14\n" +
+	"\x05appId\x18\x01 \x01(\tR\x05appId\x12\x12\n" +
+	"\x04sign\x18\x02 \x01(\tR\x04sign\x12\x1c\n" +
+	"\ttimestamp\x18\x03 \x01(\tR\ttimestamp\"4\n" +
+	"\x10AccessTokenReply\x12 \n" +
+	"\vaccessToken\x18\x01 \x01(\tR\vaccessToken2\xe7\x01\n" +
 	"\x04User\x12w\n" +
-	"\x0fCompanyRegister\x12\x1f.user.v1.CompanyRegisterRequest\x1a\x1d.user.v1.CompanyRegisterReply\"$\x82\xd3\xe4\x93\x02\x1e:\x01*\"\x19/user/v1/company/registerB\x1cZ\x1akratos-demo/api/user/v1;v1b\x06proto3"
+	"\x0fCompanyRegister\x12\x1f.user.v1.CompanyRegisterRequest\x1a\x1d.user.v1.CompanyRegisterReply\"$\x82\xd3\xe4\x93\x02\x1e:\x01*\"\x19/user/v1/company/register\x12f\n" +
+	"\vAccessToken\x12\x1b.user.v1.AccessTokenRequest\x1a\x19.user.v1.AccessTokenReply\"\x1f\x82\xd3\xe4\x93\x02\x19:\x01*\"\x14/user/v1/accessTokenB\x1cZ\x1akratos-demo/api/user/v1;v1b\x06proto3"
 
 var (
 	file_v1_user_proto_rawDescOnce sync.Once
@@ -153,16 +263,20 @@ func file_v1_user_proto_rawDescGZIP() []byte {
 	return file_v1_user_proto_rawDescData
 }
 
-var file_v1_user_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_v1_user_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_v1_user_proto_goTypes = []any{
 	(*CompanyRegisterRequest)(nil), // 0: user.v1.CompanyRegisterRequest
 	(*CompanyRegisterReply)(nil),   // 1: user.v1.CompanyRegisterReply
+	(*AccessTokenRequest)(nil),     // 2: user.v1.AccessTokenRequest
+	(*AccessTokenReply)(nil),       // 3: user.v1.AccessTokenReply
 }
 var file_v1_user_proto_depIdxs = []int32{
 	0, // 0: user.v1.User.CompanyRegister:input_type -> user.v1.CompanyRegisterRequest
-	1, // 1: user.v1.User.CompanyRegister:output_type -> user.v1.CompanyRegisterReply
-	1, // [1:2] is the sub-list for method output_type
-	0, // [0:1] is the sub-list for method input_type
+	2, // 1: user.v1.User.AccessToken:input_type -> user.v1.AccessTokenRequest
+	1, // 2: user.v1.User.CompanyRegister:output_type -> user.v1.CompanyRegisterReply
+	3, // 3: user.v1.User.AccessToken:output_type -> user.v1.AccessTokenReply
+	2, // [2:4] is the sub-list for method output_type
+	0, // [0:2] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -179,7 +293,7 @@ func file_v1_user_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_v1_user_proto_rawDesc), len(file_v1_user_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

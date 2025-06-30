@@ -19,15 +19,18 @@ var _ = binding.EncodeURL
 
 const _ = http.SupportPackageIsVersion1
 
+const OperationUserAccessToken = "/user.v1.User/AccessToken"
 const OperationUserCompanyRegister = "/user.v1.User/CompanyRegister"
 
 type UserHTTPServer interface {
+	AccessToken(context.Context, *AccessTokenRequest) (*AccessTokenReply, error)
 	CompanyRegister(context.Context, *CompanyRegisterRequest) (*CompanyRegisterReply, error)
 }
 
 func RegisterUserHTTPServer(s *http.Server, srv UserHTTPServer) {
 	r := s.Route("/")
 	r.POST("/user/v1/company/register", _User_CompanyRegister0_HTTP_Handler(srv))
+	r.POST("/user/v1/accessToken", _User_AccessToken0_HTTP_Handler(srv))
 }
 
 func _User_CompanyRegister0_HTTP_Handler(srv UserHTTPServer) func(ctx http.Context) error {
@@ -52,7 +55,30 @@ func _User_CompanyRegister0_HTTP_Handler(srv UserHTTPServer) func(ctx http.Conte
 	}
 }
 
+func _User_AccessToken0_HTTP_Handler(srv UserHTTPServer) func(ctx http.Context) error {
+	return func(ctx http.Context) error {
+		var in AccessTokenRequest
+		if err := ctx.Bind(&in); err != nil {
+			return err
+		}
+		if err := ctx.BindQuery(&in); err != nil {
+			return err
+		}
+		http.SetOperation(ctx, OperationUserAccessToken)
+		h := ctx.Middleware(func(ctx context.Context, req interface{}) (interface{}, error) {
+			return srv.AccessToken(ctx, req.(*AccessTokenRequest))
+		})
+		out, err := h(ctx, &in)
+		if err != nil {
+			return err
+		}
+		reply := out.(*AccessTokenReply)
+		return ctx.Result(200, reply)
+	}
+}
+
 type UserHTTPClient interface {
+	AccessToken(ctx context.Context, req *AccessTokenRequest, opts ...http.CallOption) (rsp *AccessTokenReply, err error)
 	CompanyRegister(ctx context.Context, req *CompanyRegisterRequest, opts ...http.CallOption) (rsp *CompanyRegisterReply, err error)
 }
 
@@ -62,6 +88,19 @@ type UserHTTPClientImpl struct {
 
 func NewUserHTTPClient(client *http.Client) UserHTTPClient {
 	return &UserHTTPClientImpl{client}
+}
+
+func (c *UserHTTPClientImpl) AccessToken(ctx context.Context, in *AccessTokenRequest, opts ...http.CallOption) (*AccessTokenReply, error) {
+	var out AccessTokenReply
+	pattern := "/user/v1/accessToken"
+	path := binding.EncodeURL(pattern, in, false)
+	opts = append(opts, http.Operation(OperationUserAccessToken))
+	opts = append(opts, http.PathTemplate(pattern))
+	err := c.cc.Invoke(ctx, "POST", path, in, &out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return &out, nil
 }
 
 func (c *UserHTTPClientImpl) CompanyRegister(ctx context.Context, in *CompanyRegisterRequest, opts ...http.CallOption) (*CompanyRegisterReply, error) {

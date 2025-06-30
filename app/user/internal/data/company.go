@@ -48,3 +48,11 @@ func (r *companyRepo) Save(req *v1.CompanyRegisterRequest) (*biz.Company, error)
 		AppSecret: insertData.AppSecret,
 	}, nil
 }
+
+func (r *companyRepo) GetInfo(*biz.Company) (*biz.Company, error) {
+	return &biz.Company{}, nil
+}
+
+func (r *companyRepo) SaveWhiteHash(*v1.AccessTokenRequest) error {
+	return nil
+}

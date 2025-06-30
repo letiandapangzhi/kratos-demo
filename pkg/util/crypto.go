@@ -7,7 +7,6 @@ import (
 	"crypto/rand"
 	"encoding/hex"
 	"errors"
-	"fmt"
 	"github.com/tjfoc/gmsm/sm3"
 	"golang.org/x/crypto/bcrypt"
 	"golang.org/x/crypto/sha3"
@@ -59,28 +58,7 @@ func SM3Hash(data string) string {
 
 // 对称加密
 
-func Aes256Test() {
-	// 生成32字节随机密钥（256位）
-	key, err := RandomByte(32)
-
-	// 待加密明文
-	plaintext := []byte("机密数据123")
-
-	// 加密
-	ciphertext, nonce, err := Aes256GCMEncrypt(key, plaintext)
-	if err != nil {
-		panic(err)
-	}
-	fmt.Printf("加密结果:\nNonce: %x\n密文: %x\n", nonce, ciphertext)
-
-	// 解密
-	decrypted, err := Aes256GCMDecrypt(key, nonce, ciphertext)
-	if err != nil {
-		panic(err)
-	}
-	fmt.Printf("解密结果: %s\n", decrypted)
-}
-
+// Aes256GCMEncrypt aes256-gcm加密
 func Aes256GCMEncrypt(key, plaintext []byte) ([]byte, []byte, error) {
 	block, err := aes.NewCipher(key)
 	if err != nil {
@@ -104,6 +82,7 @@ func Aes256GCMEncrypt(key, plaintext []byte) ([]byte, []byte, error) {
 	return ciphertext, nonce, nil
 }
 
+// Aes256GCMDecrypt aes256-gcm解密
 func Aes256GCMDecrypt(key, nonce, ciphertext []byte) ([]byte, error) {
 	block, err := aes.NewCipher(key)
 	if err != nil {
@@ -121,6 +100,13 @@ func Aes256GCMDecrypt(key, nonce, ciphertext []byte) ([]byte, error) {
 		return nil, errors.New("解密失败: 认证标签无效")
 	}
 	return plaintext, nil
+}
+
+// AccessToken 整合加密生成访问令牌
+func AccessToken(text string) {
+	// 配置读取密钥
+	// aes256加密
+	// 拼接打乱替换
 }
 
 // 非对称加密
