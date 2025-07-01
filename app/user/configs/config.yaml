@@ -13,3 +13,5 @@ data:
     addr: 127.0.0.1:6379
     read_timeout: 0.2s
     write_timeout: 0.2s
+auth:
+  aes256_key: 23a48d3191b6b89f59dafd3110c9e68803f32e2fa2762d6cfc275c6e0d96c78d

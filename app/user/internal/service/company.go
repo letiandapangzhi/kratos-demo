@@ -11,6 +11,9 @@ func (s *UserService) CompanyRegister(ctx context.Context, req *v1.CompanyRegist
 }
 
 func (s *UserService) AccessToken(ctx context.Context, req *v1.AccessTokenRequest) (*v1.AccessTokenReply, error) {
-	// todo 验证时间戳有效性
 	return s.companyBiz.CreateAccessToken(req)
+}
+
+func (s *UserService) VerifyAccessToken(ctx context.Context, req *v1.VerifyAccessTokenRequest) (*v1.VerifyAccessTokenReply, error) {
+	return s.companyBiz.VerifyAccessToken(req)
 }

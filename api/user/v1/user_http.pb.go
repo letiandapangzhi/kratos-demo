@@ -21,16 +21,19 @@ const _ = http.SupportPackageIsVersion1
 
 const OperationUserAccessToken = "/user.v1.User/AccessToken"
 const OperationUserCompanyRegister = "/user.v1.User/CompanyRegister"
+const OperationUserVerifyAccessToken = "/user.v1.User/VerifyAccessToken"
 
 type UserHTTPServer interface {
 	AccessToken(context.Context, *AccessTokenRequest) (*AccessTokenReply, error)
 	CompanyRegister(context.Context, *CompanyRegisterRequest) (*CompanyRegisterReply, error)
+	VerifyAccessToken(context.Context, *VerifyAccessTokenRequest) (*VerifyAccessTokenReply, error)
 }
 
 func RegisterUserHTTPServer(s *http.Server, srv UserHTTPServer) {
 	r := s.Route("/")
 	r.POST("/user/v1/company/register", _User_CompanyRegister0_HTTP_Handler(srv))
 	r.POST("/user/v1/accessToken", _User_AccessToken0_HTTP_Handler(srv))
+	r.POST("/user/v1/verifyAccessToken", _User_VerifyAccessToken0_HTTP_Handler(srv))
 }
 
 func _User_CompanyRegister0_HTTP_Handler(srv UserHTTPServer) func(ctx http.Context) error {
@@ -77,9 +80,32 @@ func _User_AccessToken0_HTTP_Handler(srv UserHTTPServer) func(ctx http.Context) 
 	}
 }
 
+func _User_VerifyAccessToken0_HTTP_Handler(srv UserHTTPServer) func(ctx http.Context) error {
+	return func(ctx http.Context) error {
+		var in VerifyAccessTokenRequest
+		if err := ctx.Bind(&in); err != nil {
+			return err
+		}
+		if err := ctx.BindQuery(&in); err != nil {
+			return err
+		}
+		http.SetOperation(ctx, OperationUserVerifyAccessToken)
+		h := ctx.Middleware(func(ctx context.Context, req interface{}) (interface{}, error) {
+			return srv.VerifyAccessToken(ctx, req.(*VerifyAccessTokenRequest))
+		})
+		out, err := h(ctx, &in)
+		if err != nil {
+			return err
+		}
+		reply := out.(*VerifyAccessTokenReply)
+		return ctx.Result(200, reply)
+	}
+}
+
 type UserHTTPClient interface {
 	AccessToken(ctx context.Context, req *AccessTokenRequest, opts ...http.CallOption) (rsp *AccessTokenReply, err error)
 	CompanyRegister(ctx context.Context, req *CompanyRegisterRequest, opts ...http.CallOption) (rsp *CompanyRegisterReply, err error)
+	VerifyAccessToken(ctx context.Context, req *VerifyAccessTokenRequest, opts ...http.CallOption) (rsp *VerifyAccessTokenReply, err error)
 }
 
 type UserHTTPClientImpl struct {
@@ -108,6 +134,19 @@ func (c *UserHTTPClientImpl) CompanyRegister(ctx context.Context, in *CompanyReg
 	pattern := "/user/v1/company/register"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationUserCompanyRegister))
+	opts = append(opts, http.PathTemplate(pattern))
+	err := c.cc.Invoke(ctx, "POST", path, in, &out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
+func (c *UserHTTPClientImpl) VerifyAccessToken(ctx context.Context, in *VerifyAccessTokenRequest, opts ...http.CallOption) (*VerifyAccessTokenReply, error) {
+	var out VerifyAccessTokenReply
+	pattern := "/user/v1/verifyAccessToken"
+	path := binding.EncodeURL(pattern, in, false)
+	opts = append(opts, http.Operation(OperationUserVerifyAccessToken))
 	opts = append(opts, http.PathTemplate(pattern))
 	err := c.cc.Invoke(ctx, "POST", path, in, &out, opts...)
 	if err != nil {

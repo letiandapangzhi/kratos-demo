@@ -7,6 +7,7 @@ import (
 	"crypto/rand"
 	"encoding/hex"
 	"errors"
+	"fmt"
 	"github.com/tjfoc/gmsm/sm3"
 	"golang.org/x/crypto/bcrypt"
 	"golang.org/x/crypto/sha3"
@@ -84,6 +85,8 @@ func Aes256GCMEncrypt(key, plaintext []byte) ([]byte, []byte, error) {
 
 // Aes256GCMDecrypt aes256-gcm解密
 func Aes256GCMDecrypt(key, nonce, ciphertext []byte) ([]byte, error) {
+
+	fmt.Printf("%x %x %x", key, nonce, ciphertext)
 	block, err := aes.NewCipher(key)
 	if err != nil {
 		return nil, err

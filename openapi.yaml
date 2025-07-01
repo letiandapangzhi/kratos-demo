@@ -42,6 +42,24 @@ paths:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/user.v1.CompanyRegisterReply'
+    /user/v1/verifyAccessToken:
+        post:
+            tags:
+                - User
+            operationId: User_VerifyAccessToken
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/user.v1.VerifyAccessTokenRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/user.v1.VerifyAccessTokenReply'
 components:
     schemas:
         user.v1.AccessTokenReply:
@@ -71,6 +89,20 @@ components:
                 phone:
                     type: string
                 name:
+                    type: string
+        user.v1.VerifyAccessTokenReply:
+            type: object
+            properties:
+                valid:
+                    type: boolean
+                msg:
+                    type: string
+        user.v1.VerifyAccessTokenRequest:
+            type: object
+            properties:
+                token:
+                    type: string
+                appId:
                     type: string
 tags:
     - name: User

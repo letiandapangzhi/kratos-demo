@@ -19,6 +19,12 @@ service User {
       body: "*"
     };
   }
+  rpc VerifyAccessToken (VerifyAccessTokenRequest) returns (VerifyAccessTokenReply) {
+    option (google.api.http) = {
+      post: "/user/v1/verifyAccessToken"
+      body: "*"
+    };
+  }
 }
 
 message CompanyRegisterRequest {
@@ -39,4 +45,14 @@ message AccessTokenRequest {
 
 message AccessTokenReply {
   string accessToken = 1;
+}
+
+message VerifyAccessTokenRequest{
+  string token = 1;
+  string appId = 2;
+}
+
+message VerifyAccessTokenReply{
+  bool valid = 1;
+  string msg = 2;
 }

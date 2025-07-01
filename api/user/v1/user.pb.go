@@ -230,6 +230,110 @@ func (x *AccessTokenReply) GetAccessToken() string {
 	return ""
 }
 
+type VerifyAccessTokenRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
+	AppId         string                 `protobuf:"bytes,2,opt,name=appId,proto3" json:"appId,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *VerifyAccessTokenRequest) Reset() {
+	*x = VerifyAccessTokenRequest{}
+	mi := &file_v1_user_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *VerifyAccessTokenRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*VerifyAccessTokenRequest) ProtoMessage() {}
+
+func (x *VerifyAccessTokenRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_v1_user_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use VerifyAccessTokenRequest.ProtoReflect.Descriptor instead.
+func (*VerifyAccessTokenRequest) Descriptor() ([]byte, []int) {
+	return file_v1_user_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *VerifyAccessTokenRequest) GetToken() string {
+	if x != nil {
+		return x.Token
+	}
+	return ""
+}
+
+func (x *VerifyAccessTokenRequest) GetAppId() string {
+	if x != nil {
+		return x.AppId
+	}
+	return ""
+}
+
+type VerifyAccessTokenReply struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Valid         bool                   `protobuf:"varint,1,opt,name=valid,proto3" json:"valid,omitempty"`
+	Msg           string                 `protobuf:"bytes,2,opt,name=msg,proto3" json:"msg,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *VerifyAccessTokenReply) Reset() {
+	*x = VerifyAccessTokenReply{}
+	mi := &file_v1_user_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *VerifyAccessTokenReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*VerifyAccessTokenReply) ProtoMessage() {}
+
+func (x *VerifyAccessTokenReply) ProtoReflect() protoreflect.Message {
+	mi := &file_v1_user_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use VerifyAccessTokenReply.ProtoReflect.Descriptor instead.
+func (*VerifyAccessTokenReply) Descriptor() ([]byte, []int) {
+	return file_v1_user_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *VerifyAccessTokenReply) GetValid() bool {
+	if x != nil {
+		return x.Valid
+	}
+	return false
+}
+
+func (x *VerifyAccessTokenReply) GetMsg() string {
+	if x != nil {
+		return x.Msg
+	}
+	return ""
+}
+
 var File_v1_user_proto protoreflect.FileDescriptor
 
 const file_v1_user_proto_rawDesc = "" +
@@ -246,10 +350,17 @@ const file_v1_user_proto_rawDesc = "" +
 	"\x04sign\x18\x02 \x01(\tR\x04sign\x12\x1c\n" +
 	"\ttimestamp\x18\x03 \x01(\tR\ttimestamp\"4\n" +
 	"\x10AccessTokenReply\x12 \n" +
-	"\vaccessToken\x18\x01 \x01(\tR\vaccessToken2\xe7\x01\n" +
+	"\vaccessToken\x18\x01 \x01(\tR\vaccessToken\"F\n" +
+	"\x18VerifyAccessTokenRequest\x12\x14\n" +
+	"\x05token\x18\x01 \x01(\tR\x05token\x12\x14\n" +
+	"\x05appId\x18\x02 \x01(\tR\x05appId\"@\n" +
+	"\x16VerifyAccessTokenReply\x12\x14\n" +
+	"\x05valid\x18\x01 \x01(\bR\x05valid\x12\x10\n" +
+	"\x03msg\x18\x02 \x01(\tR\x03msg2\xe7\x02\n" +
 	"\x04User\x12w\n" +
 	"\x0fCompanyRegister\x12\x1f.user.v1.CompanyRegisterRequest\x1a\x1d.user.v1.CompanyRegisterReply\"$\x82\xd3\xe4\x93\x02\x1e:\x01*\"\x19/user/v1/company/register\x12f\n" +
-	"\vAccessToken\x12\x1b.user.v1.AccessTokenRequest\x1a\x19.user.v1.AccessTokenReply\"\x1f\x82\xd3\xe4\x93\x02\x19:\x01*\"\x14/user/v1/accessTokenB\x1cZ\x1akratos-demo/api/user/v1;v1b\x06proto3"
+	"\vAccessToken\x12\x1b.user.v1.AccessTokenRequest\x1a\x19.user.v1.AccessTokenReply\"\x1f\x82\xd3\xe4\x93\x02\x19:\x01*\"\x14/user/v1/accessToken\x12~\n" +
+	"\x11VerifyAccessToken\x12!.user.v1.VerifyAccessTokenRequest\x1a\x1f.user.v1.VerifyAccessTokenReply\"%\x82\xd3\xe4\x93\x02\x1f:\x01*\"\x1a/user/v1/verifyAccessTokenB\x1cZ\x1akratos-demo/api/user/v1;v1b\x06proto3"
 
 var (
 	file_v1_user_proto_rawDescOnce sync.Once
@@ -263,20 +374,24 @@ func file_v1_user_proto_rawDescGZIP() []byte {
 	return file_v1_user_proto_rawDescData
 }
 
-var file_v1_user_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_v1_user_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_v1_user_proto_goTypes = []any{
-	(*CompanyRegisterRequest)(nil), // 0: user.v1.CompanyRegisterRequest
-	(*CompanyRegisterReply)(nil),   // 1: user.v1.CompanyRegisterReply
-	(*AccessTokenRequest)(nil),     // 2: user.v1.AccessTokenRequest
-	(*AccessTokenReply)(nil),       // 3: user.v1.AccessTokenReply
+	(*CompanyRegisterRequest)(nil),   // 0: user.v1.CompanyRegisterRequest
+	(*CompanyRegisterReply)(nil),     // 1: user.v1.CompanyRegisterReply
+	(*AccessTokenRequest)(nil),       // 2: user.v1.AccessTokenRequest
+	(*AccessTokenReply)(nil),         // 3: user.v1.AccessTokenReply
+	(*VerifyAccessTokenRequest)(nil), // 4: user.v1.VerifyAccessTokenRequest
+	(*VerifyAccessTokenReply)(nil),   // 5: user.v1.VerifyAccessTokenReply
 }
 var file_v1_user_proto_depIdxs = []int32{
 	0, // 0: user.v1.User.CompanyRegister:input_type -> user.v1.CompanyRegisterRequest
 	2, // 1: user.v1.User.AccessToken:input_type -> user.v1.AccessTokenRequest
-	1, // 2: user.v1.User.CompanyRegister:output_type -> user.v1.CompanyRegisterReply
-	3, // 3: user.v1.User.AccessToken:output_type -> user.v1.AccessTokenReply
-	2, // [2:4] is the sub-list for method output_type
-	0, // [0:2] is the sub-list for method input_type
+	4, // 2: user.v1.User.VerifyAccessToken:input_type -> user.v1.VerifyAccessTokenRequest
+	1, // 3: user.v1.User.CompanyRegister:output_type -> user.v1.CompanyRegisterReply
+	3, // 4: user.v1.User.AccessToken:output_type -> user.v1.AccessTokenReply
+	5, // 5: user.v1.User.VerifyAccessToken:output_type -> user.v1.VerifyAccessTokenReply
+	3, // [3:6] is the sub-list for method output_type
+	0, // [0:3] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -293,7 +408,7 @@ func file_v1_user_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_v1_user_proto_rawDesc), len(file_v1_user_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
