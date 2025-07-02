@@ -5,6 +5,8 @@ server:
   grpc:
     addr: 0.0.0.0:31001
     timeout: 1s
+  log:
+    path: /Users/dpz/gh/kratos-demo/log/user  # 绝对路径
 data:
   database:
     driver: mysql
