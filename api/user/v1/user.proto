@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package user.v1;
 
-
+import "buf/validate/validate.proto";
 import "google/api/annotations.proto";
 
 option go_package = "kratos-demo/api/user/v1;v1";
@@ -49,7 +49,11 @@ message AccessTokenReply {
 }
 
 message VerifyAccessTokenRequest {
-  string token = 1;
+  string token = 1 [(buf.validate.field).cel = {
+    id: "token_valid",
+    message: "token must be a valid UUID",
+    expression: "uint(this.size()) > 1",
+  }];
   string appId = 2;
 }
 
