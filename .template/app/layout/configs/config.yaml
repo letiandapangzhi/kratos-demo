@@ -5,8 +5,6 @@ server:
   grpc:
     addr: 0.0.0.0:9000
     timeout: 1s
-  log:
-    path: /Users/dpz/gh/kratos-demo/log/layout
 data:
   database:
     driver: mysql
@@ -15,3 +13,5 @@ data:
     addr: 127.0.0.1:6379
     read_timeout: 0.2s
     write_timeout: 0.2s
+  log:
+    path: /Users/dpz/gh/kratos-demo/log/layout

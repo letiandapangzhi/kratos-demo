@@ -2,6 +2,7 @@ package service
 
 import (
 	"context"
+	"fmt"
 	v1 "kratos-demo/api/user/v1"
 )
 
@@ -15,5 +16,8 @@ func (s *UserService) AccessToken(ctx context.Context, req *v1.AccessTokenReques
 }
 
 func (s *UserService) VerifyAccessToken(ctx context.Context, req *v1.VerifyAccessTokenRequest) (*v1.VerifyAccessTokenReply, error) {
+	if req.Token == "" || req.AppId == "" {
+		return nil, fmt.Errorf("token or app_id is empty")
+	}
 	return s.companyBiz.VerifyAccessToken(req)
 }

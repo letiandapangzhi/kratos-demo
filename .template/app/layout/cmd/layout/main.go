@@ -53,7 +53,7 @@ func newApp(logger log.Logger, gs *grpc.Server, hs *http.Server) *kratos.App {
 	)
 }
 
-func encoderCore(l zapcore.Level, level zap.LevelEnablerFunc, conf *conf.Server) (zapcore.Core, error) {
+func encoderCore(l zapcore.Level, level zap.LevelEnablerFunc, conf *conf.Data) (zapcore.Core, error) {
 	fileWriter, err := rotatelogs.New(
 		path.Join(conf.Log.Path, "%Y-%m-%d", l.String()+".log"),
 		rotatelogs.WithClock(rotatelogs.Local),
@@ -139,7 +139,7 @@ func main() {
 	}
 	cores := make([]zapcore.Core, 0, len(level))
 	for _, l := range level {
-		core, err := encoderCore(l, levelPriority(l), bc.Server)
+		core, err := encoderCore(l, levelPriority(l), bc.Data)
 		if err != nil {
 			panic(err)
 		}

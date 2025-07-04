@@ -2,24 +2,25 @@ syntax = "proto3";
 
 package user.v1;
 
-option go_package = "kratos-demo/api/user/v1;v1";
 
 import "google/api/annotations.proto";
 
+option go_package = "kratos-demo/api/user/v1;v1";
+
 service User {
-  rpc CompanyRegister (CompanyRegisterRequest) returns (CompanyRegisterReply) {
+  rpc CompanyRegister(CompanyRegisterRequest) returns (CompanyRegisterReply) {
     option (google.api.http) = {
       post: "/user/v1/company/register"
       body: "*"
     };
   }
-  rpc AccessToken (AccessTokenRequest) returns (AccessTokenReply) {
+  rpc AccessToken(AccessTokenRequest) returns (AccessTokenReply) {
     option (google.api.http) = {
       post: "/user/v1/accessToken"
       body: "*"
     };
   }
-  rpc VerifyAccessToken (VerifyAccessTokenRequest) returns (VerifyAccessTokenReply) {
+  rpc VerifyAccessToken(VerifyAccessTokenRequest) returns (VerifyAccessTokenReply) {
     option (google.api.http) = {
       post: "/user/v1/verifyAccessToken"
       body: "*"
@@ -47,12 +48,12 @@ message AccessTokenReply {
   string accessToken = 1;
 }
 
-message VerifyAccessTokenRequest{
+message VerifyAccessTokenRequest {
   string token = 1;
   string appId = 2;
 }
 
-message VerifyAccessTokenReply{
+message VerifyAccessTokenReply {
   bool valid = 1;
   string msg = 2;
 }

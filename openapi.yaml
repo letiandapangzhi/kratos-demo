@@ -3,36 +3,106 @@
 
 openapi: 3.0.3
 info:
-    title: Greeter API
-    description: The greeting service definition.
+    title: User API
     version: 0.0.1
 paths:
-    /helloworld/{name}:
-        get:
+    /user/v1/accessToken:
+        post:
             tags:
-                - Greeter
-            description: Sends a greeting
-            operationId: Greeter_SayHello
-            parameters:
-                - name: name
-                  in: path
-                  required: true
-                  schema:
-                    type: string
+                - User
+            operationId: User_AccessToken
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/user.v1.AccessTokenRequest'
+                required: true
             responses:
                 "200":
                     description: OK
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/basis.v1.HelloReply'
+                                $ref: '#/components/schemas/user.v1.AccessTokenReply'
+    /user/v1/company/register:
+        post:
+            tags:
+                - User
+            operationId: User_CompanyRegister
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/user.v1.CompanyRegisterRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/user.v1.CompanyRegisterReply'
+    /user/v1/verifyAccessToken:
+        post:
+            tags:
+                - User
+            operationId: User_VerifyAccessToken
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/user.v1.VerifyAccessTokenRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/user.v1.VerifyAccessTokenReply'
 components:
     schemas:
-        basis.v1.HelloReply:
+        user.v1.AccessTokenReply:
             type: object
             properties:
-                message:
+                accessToken:
                     type: string
-            description: The response message containing the greetings
+        user.v1.AccessTokenRequest:
+            type: object
+            properties:
+                appId:
+                    type: string
+                sign:
+                    type: string
+                timestamp:
+                    type: string
+        user.v1.CompanyRegisterReply:
+            type: object
+            properties:
+                appId:
+                    type: string
+                appSecret:
+                    type: string
+        user.v1.CompanyRegisterRequest:
+            type: object
+            properties:
+                phone:
+                    type: string
+                name:
+                    type: string
+        user.v1.VerifyAccessTokenReply:
+            type: object
+            properties:
+                valid:
+                    type: boolean
+                msg:
+                    type: string
+        user.v1.VerifyAccessTokenRequest:
+            type: object
+            properties:
+                token:
+                    type: string
+                appId:
+                    type: string
 tags:
-    - name: Greeter
+    - name: User
